@@ -3,6 +3,7 @@ import AutoLoad, { AutoloadPluginOptions } from 'fastify-autoload';
 import { FastifyPluginAsync } from 'fastify';
 
 import healthRoutes from './api/health/routes';
+import itemRoutes from './api/item/routes';
 
 export type AppOptions = {
     // Place your custom options for app below here.
@@ -14,6 +15,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
 ): Promise<void> => {
     // Place here your custom code!
     await fastify.register(healthRoutes, { prefix: '/api/health' });
+    await fastify.register(itemRoutes, { prefix: '/api/items' });
 
     // Do not touch the following lines
 
