@@ -1,23 +1,26 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+<h1 align="center">Fastify API example</h1>
 
-## Available Scripts
+<div align="center">
 
-In the project directory, you can run:
+API with NodeJS TypeScript using Fastify
 
-### `npm run dev`
+[![license](https://img.shields.io/badge/license-GNU-blue.svg)](https://github.com/captain-fatbeard/fastify-api/blob/main/LICENSE)
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</div>
 
-### `npm start`
+## Summary
 
-For production mode
 
-### `npm run test`
 
-Run the test cases.
+## This repository
 
-## Learn More
 
-To learn Fastify, check out the [Fastify documentation](https://www.fastify.io/docs/latest/).
+Steps to run this project:
+
+1. Run `npm install` command
+2. Run `docker-compose up` command
+3. Run `cp .env.sample .env` command
+4. Run `npm run db:migrate` command
+5. Run `npm run dev` command
+
+The project uses node v16.
