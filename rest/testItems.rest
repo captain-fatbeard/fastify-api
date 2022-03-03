@@ -1,0 +1,25 @@
+GET http://localhost:3000/api/items?page=2
+
+###
+
+GET http://localhost:3000/api/items/1
+
+###
+
+POST http://localhost:3000/api/items Content-Type: application/json
+
+{
+    "name": "item name 1",
+}
+
+###
+
+PUT http://localhost:3000/api/items/1 Content-Type: application/json
+
+{
+    "name": "item name changed",
+}
+
+###
+
+DELETE http://localhost:3000/api/items/1
