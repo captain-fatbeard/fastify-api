@@ -1,16 +1,12 @@
-const fp = require('fastify-plugin');
+import { hash } from 'bcryptjs';
 
-export const hashPassword = (password: string) => {
-    // const hash = await fp.bcrypt.hash(password);
-    // const hash = await fp.bcryptHash(password);
-    // console.log(typeof hash);
-    // console.log('hash', hash)
-    const hash = password;
+export const hashPassword = async (password: string) => {
+    const hashedPassword = await hash(password, 10);
 
-    return { hash };
+    return { hashedPassword };
 };
 
-export const verifyPassword = async ({
+export const verifyPassword = ({
     claim,
     hash,
 }: {
@@ -18,7 +14,7 @@ export const verifyPassword = async ({
     hash: string;
 }) => {
     // const hash = await fp.bcrypt.compare(claim, hash);
-    const match = await fp.bcryptCompare(claim, hash);
+    const match = claim + hash;
 
     return match;
 };

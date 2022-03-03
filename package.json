@@ -27,14 +27,16 @@
   "dependencies": {
     "@prisma/client": "^3.10.0",
     "@sinclair/typebox": "^0.23.4",
+    "bcryptjs": "^2.4.3",
     "fastify": "^3.0.0",
     "fastify-autoload": "^3.10.0",
-    "fastify-bcrypt": "^1.0.0",
     "fastify-cli": "^2.15.0",
     "fastify-plugin": "^3.0.0",
-    "fastify-sensible": "^3.1.2"
+    "fastify-sensible": "^3.1.2",
+    "fastify-typebox": "^0.9.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/node": "^17.0.8",
     "@types/tap": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
