@@ -1,7 +1,9 @@
 import { join } from 'path';
 import AutoLoad, { AutoloadPluginOptions } from 'fastify-autoload';
+import fastifyBcrypt from 'fastify-bcrypt';
 import { FastifyPluginAsync } from 'fastify';
 
+import userRoutes from './api/user/routes';
 import healthRoutes from './api/health/routes';
 import itemRoutes from './api/item/routes';
 
@@ -14,6 +16,9 @@ const app: FastifyPluginAsync<AppOptions> = async (
     opts,
 ): Promise<void> => {
     // Place here your custom code!
+    await fastify.register(fastifyBcrypt);
+
+    await fastify.register(userRoutes, { prefix: '/api/users' });
     await fastify.register(healthRoutes, { prefix: '/api/health' });
     await fastify.register(itemRoutes, { prefix: '/api/items' });
 

@@ -18,13 +18,14 @@ export const createItem = async (
     req: FastifyRequest,
     res: FastifyReply,
 ): Promise<FastifyReply> => {
-    const newItem = await prisma.item.create({
-        data: {
-            name: 'Alice',
-        },
-    });
+    //     const newItem = await prisma.item.create({
+    //         data: {
+    //             name: 'Alice',
+    //         },
+    //     });
 
-    return res.code(201).send({ data: newItem });
+    //     return res.code(201).send({ data: newItem });
+    return res.code(201);
 };
 
-module.exports.autoload = false;
+// module.exports.autoload = false;
