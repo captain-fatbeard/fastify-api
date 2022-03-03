@@ -14,7 +14,6 @@ const app: FastifyPluginAsync<AppOptions> = async (
     void fastify.register(AutoLoad, {
         dir: join(__dirname, 'api'),
         options: opts,
-        ignorePattern: /.*(model|schema|controller|test)\.ts/,
     });
 
     // Do not touch the following lines

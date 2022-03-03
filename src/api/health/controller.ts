@@ -6,3 +6,5 @@ export const isUp = async (
 ): Promise<FastifyReply> => {
     return res.send({ status: 'ok' });
 };
+
+module.exports.autoload = false;
