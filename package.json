@@ -12,7 +12,7 @@
     "build:ts": "tsc",
     "dev": "tsc && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"tsc -w\" \"fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js\"",
     "db:migrate": "npx prisma migrate dev"
-    },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/captain-fatbeard/fastify-api.git"
@@ -26,8 +26,10 @@
   "homepage": "https://github.com/captain-fatbeard/fastify-api#readme",
   "dependencies": {
     "@prisma/client": "^3.10.0",
+    "@sinclair/typebox": "^0.23.4",
     "fastify": "^3.0.0",
     "fastify-autoload": "^3.10.0",
+    "fastify-bcrypt": "^1.0.0",
     "fastify-cli": "^2.15.0",
     "fastify-plugin": "^3.0.0",
     "fastify-sensible": "^3.1.2"
