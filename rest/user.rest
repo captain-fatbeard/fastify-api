@@ -10,7 +10,7 @@ POST http://localhost:3000/api/users HTTP/1,1
 Content-Type: application/json
 
 {
-    "email": "name@test.test3",
+    "email": "name@test.test6",
     "name": "name",
     "password": "password",
     "phone": "12345678",
