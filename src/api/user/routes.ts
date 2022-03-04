@@ -1,4 +1,4 @@
-import { FastifyInstance } from 'fastify';
+import { FastifyPluginAsync, FastifyInstance } from 'fastify';
 
 import { createUserHandler, authUserHandler } from './controller';
 import {
@@ -8,7 +8,7 @@ import {
     createUserSchema,
 } from './schema';
 
-const userRoutes = async (server: FastifyInstance) => {
+const userRoutes: FastifyPluginAsync = async (server: FastifyInstance) => {
     server.post(
         '/',
         {

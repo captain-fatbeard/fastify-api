@@ -4,7 +4,7 @@ export const isUp = async (
     req: FastifyRequest,
     res: FastifyReply,
 ): Promise<FastifyReply> => {
-    return res.send({ status: 'ok' });
+    return res.send({ status: 'ok', timestamp: new Date().toISOString() });
 };
 
 module.exports.autoload = false;
