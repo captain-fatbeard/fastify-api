@@ -1,11 +1,11 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { CreateUserInput } from './schema';
+import { createUserSchema } from './schema';
 
 import { createUser } from './services';
 
 export const createUserHandler = async (
     req: FastifyRequest<{
-        Body: CreateUserInput;
+        Body: createUserSchema;
     }>,
     res: FastifyReply,
 ) => {

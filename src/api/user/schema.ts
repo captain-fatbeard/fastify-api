@@ -1,23 +1,24 @@
 import { Type, Static } from '@sinclair/typebox';
 
-const userDefaults = {
-    email: Type.String({
-        format: 'email',
-    }),
+const userSchema = {
+    email: Type.String({ format: 'email' }),
     name: Type.String(),
     phone: Type.String(),
     role: Type.Number(),
-    validated: Type.String(),
 };
 
-const createUserSchema = Type.Object({
-    ...userDefaults,
+export const createUserSchema = Type.Object({
+    ...userSchema,
     password: Type.String(),
 });
 
-// const createUserResponseSchema = Type.Object({
-//     id: Type.Number(),
-//     ...userDefaults,
-// });
+export const createUserResponseSchema = Type.Object({
+    id: Type.Number(),
+    ...userSchema,
+    validated: Type.String({ format: 'date-time' }),
+    created_at: Type.String({ format: 'date-time' }),
+    updated_at: Type.String({ format: 'date-time' }),
+});
 
-export type CreateUserInput = Static<typeof createUserSchema>;
+export type createUserSchema = Static<typeof createUserSchema>;
+export type createUserResponseSchema = Static<typeof createUserResponseSchema>;
