@@ -1,7 +1,12 @@
 import { FastifyInstance } from 'fastify';
 
-import { createUserHandler } from './controller';
-import { createUserResponseSchema, createUserSchema } from './schema';
+import { createUserHandler, authUserHandler } from './controller';
+import {
+    // autheUserResponseSchema,
+    // autheUserSchema,
+    createUserResponseSchema,
+    createUserSchema,
+} from './schema';
 
 const userRoutes = async (server: FastifyInstance) => {
     server.post(
@@ -15,6 +20,19 @@ const userRoutes = async (server: FastifyInstance) => {
             },
         },
         createUserHandler,
+    );
+
+    server.post(
+        '/auth',
+        // {
+        //     schema: {
+        //         body: autheUserSchema,
+        //         response: {
+        //             200: autheUserResponseSchema,
+        //         },
+        //     },
+        // },
+        authUserHandler,
     );
 };
 

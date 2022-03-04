@@ -20,5 +20,16 @@ export const createUserResponseSchema = Type.Object({
     updated_at: Type.String({ format: 'date-time' }),
 });
 
+export const autheUserSchema = Type.Object({
+    email: Type.String({ format: 'email' }),
+    password: Type.String(require),
+});
+
+export const autheUserResponseSchema = Type.Object({
+    token: Type.String(),
+});
+
 export type createUserSchema = Static<typeof createUserSchema>;
 export type createUserResponseSchema = Static<typeof createUserResponseSchema>;
+export type autheUserSchema = Static<typeof autheUserSchema>;
+export type autheUserResponseSchema = Static<typeof autheUserResponseSchema>;
