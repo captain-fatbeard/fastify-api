@@ -1,19 +1,31 @@
-import { z } from 'zod';
+// const userDefaults = {
+//     email:
+//     name:
+//     firstname:
+//     lastname:
+//     phone:
+//     validated:
+//     role
+// };
 
-const createUserSchema = z.object({
-    email: z
-        .string({
-            required_error: 'Email is required',
-            invalid_type_error: 'Email must be a string',
-        })
-        .email(),
-    password: z.string(),
-    name: z.string(),
-    firstname: z.string(),
-    lastname: z.string(),
-    phone: z.string(),
-    validated: z.string(),
-    role: z.number(),
-});
+// const createUserSchema = {
+//     ...userDefaults,
+// });
 
-export default createUserSchema;
+// const createUserResponseSchema = {
+//     id:
+//     ...userDefaults,
+// });
+
+// const updateUserSchema = {
+//     ...userDefaults,
+//     password: z.string().optional(),
+// });
+
+// export type updateUserInput = z.infer<typeof updateUserSchema>;
+// export type CreateUserInput = z.infer<typeof createUserSchema>;
+
+// export const { schemas: userSchemas, $ref } = buildJsonSchemas({
+//     createUserSchema,
+//     createUserResponseSchema,
+// });
