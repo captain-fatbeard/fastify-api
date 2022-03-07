@@ -1,8 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 
-export const createUser = async (
+export const createUserHandler = async (
     request: FastifyRequest,
     reply: FastifyReply,
-) => {
-    send.reply {data: 'user'}
-};
+) => {};
