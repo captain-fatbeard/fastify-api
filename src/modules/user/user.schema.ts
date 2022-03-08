@@ -1,31 +1,23 @@
-// const userDefaults = {
-//     email:
-//     name:
-//     firstname:
-//     lastname:
-//     phone:
-//     validated:
-//     role
-// };
+import { Static, Type } from '@sinclair/typebox';
 
-// const createUserSchema = {
-//     ...userDefaults,
-// });
+const userDefaults = {
+    email: Type.String({ format: 'email' }),
+    name: Type.Optional(Type.String()),
+    firstname: Type.Optional(Type.String()),
+    lastname: Type.Optional(Type.String()),
+    phone: Type.Optional(Type.String()),
+    validated: Type.Optional(Type.String()),
+    role: Type.Optional(Type.Integer()),
+};
 
-// const createUserResponseSchema = {
-//     id:
-//     ...userDefaults,
-// });
+export const storeUserSchema = Type.Object({
+    ...userDefaults,
+    password: Type.Optional(Type.String()),
+});
 
-// const updateUserSchema = {
-//     ...userDefaults,
-//     password: z.string().optional(),
-// });
+export const userResponseSchema = Type.Object({
+    id: Type.Integer(),
+    ...userDefaults,
+});
 
-// export type updateUserInput = z.infer<typeof updateUserSchema>;
-// export type CreateUserInput = z.infer<typeof createUserSchema>;
-
-// export const { schemas: userSchemas, $ref } = buildJsonSchemas({
-//     createUserSchema,
-//     createUserResponseSchema,
-// });
+export type storeUserInput = Static<typeof storeUserSchema>;
