@@ -1,7 +1,7 @@
-import { hash, compare } from 'bcryptjs';
+import { hashSync, genSaltSync, compareSync } from 'bcryptjs';
 
-export const hashPassword = (password: string) => {
-    return hash(password);
+export const hashPassword = (password: string): string => {
+    return hashSync(password, genSaltSync(8));
 };
 
 export const verifyPassword = ({
@@ -11,5 +11,5 @@ export const verifyPassword = ({
     claim: string;
     hash: string;
 }) => {
-    return compare(claim, hash);
+    return compareSync(claim, hash);
 };

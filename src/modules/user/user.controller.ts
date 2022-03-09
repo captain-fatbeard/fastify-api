@@ -1,6 +1,12 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { storeUserInput } from './user.schema';
-import { createUser, showUser, indexUsers } from './user.service';
+import {
+    createUser,
+    showUser,
+    indexUsers,
+    updateUser,
+    deleteUser,
+} from './user.service';
 
 export const createUserHandler = async (
     request: FastifyRequest<{
@@ -40,6 +46,37 @@ export const showUsersHandler = async (
         const user = await showUser(id);
 
         return reply.code(200).send(user);
+    } catch (error) {
+        return reply.code(500).send(error);
+    }
+};
+
+export const updateUserHandler = async (
+    request: FastifyRequest<{
+        Body: storeUserInput;
+    }>,
+    reply: FastifyReply,
+) => {
+    try {
+        const { id }: { id?: number } = request.params;
+        const body = request.body;
+        const user = await updateUser(id, body);
+
+        return reply.code(200).send(user);
+    } catch (error) {
+        return reply.code(500).send(error);
+    }
+};
+
+export const deleteUserHandler = async (
+    request: FastifyRequest,
+    reply: FastifyReply,
+) => {
+    try {
+        const { id }: { id?: number } = request.params;
+        const deleted = await deleteUser(id);
+
+        return reply.code(200).send(deleted);
     } catch (error) {
         return reply.code(500).send(error);
     }

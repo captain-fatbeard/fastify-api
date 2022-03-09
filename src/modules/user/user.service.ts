@@ -1,8 +1,13 @@
-// import { hashPassword } from '../../utils/hash';
+import { hashPassword } from '../../utils/hash';
 import prisma from '../../utils/prisma';
 import { storeUserInput } from './user.schema';
 
 export const createUser = async (input: storeUserInput) => {
+    if (input.password) {
+        const hashedPassword = await hashPassword(input.password);
+        input = { ...input, password: hashedPassword };
+    }
+
     const user = await prisma.user.create({
         data: input,
     });
@@ -22,13 +27,22 @@ export const showUser = async (id: number) => {
     return user;
 };
 
-// export const updateUser = async (input: updateUserInput) => {
-//     const { password, ...rest } = input;
-//     const { hashedPassword } = hashPassword(password);
+export const updateUser = async (id: number, input: storeUserInput) => {
+    if (input.password) {
+        const hashedPassword = await hashPassword(input.password);
+        input = { ...input, password: hashedPassword };
+    }
 
-//     const user = await prisma.user.update({
-//         data: { ...rest, password: hashedPassword },
-//     });
+    const user = await prisma.user.update({
+        where: { id: Number(id) },
+        data: input,
+    });
 
-//     return user;
-// };
+    return user;
+};
+
+export const deleteUser = async (id: number) => {
+    await prisma.user.delete({ where: { id: Number(id) } });
+
+    return { message: `user ${id} is deleted` };
+};

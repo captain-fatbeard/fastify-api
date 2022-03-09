@@ -24,6 +24,7 @@
   "dependencies": {
     "@prisma/client": "^3.10.0",
     "@sinclair/typebox": "^0.23.4",
+    "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
     "fastify": "^3.27.3",
     "fastify-jwt": "^4.1.3"

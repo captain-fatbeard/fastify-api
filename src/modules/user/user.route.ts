@@ -3,10 +3,29 @@ import {
     createUserHandler,
     indexUsersHandler,
     showUsersHandler,
+    updateUserHandler,
+    deleteUserHandler,
 } from './user.controller';
-import { storeUserSchema, userResponseSchema } from './user.schema';
+import {
+    storeUserSchema,
+    userDeletedResponseSchema,
+    userResponseSchema,
+} from './user.schema';
 
 const userRoutes = async (fastify: FastifyInstance) => {
+    fastify.post(
+        '/',
+        {
+            schema: {
+                body: { storeUserSchema },
+                response: {
+                    201: userResponseSchema,
+                },
+            },
+        },
+        createUserHandler,
+    );
+
     fastify.get(
         '/',
         {
@@ -34,17 +53,29 @@ const userRoutes = async (fastify: FastifyInstance) => {
         showUsersHandler,
     );
 
-    fastify.post(
-        '/',
+    fastify.put(
+        '/:id',
         {
             schema: {
                 body: { storeUserSchema },
                 response: {
-                    201: userResponseSchema,
+                    200: userResponseSchema,
                 },
             },
         },
-        createUserHandler,
+        updateUserHandler,
+    );
+
+    fastify.delete(
+        '/:id',
+        {
+            schema: {
+                response: {
+                    200: userDeletedResponseSchema,
+                },
+            },
+        },
+        deleteUserHandler,
     );
 };
 

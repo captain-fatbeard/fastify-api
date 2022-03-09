@@ -20,4 +20,8 @@ export const userResponseSchema = Type.Object({
     ...userDefaults,
 });
 
+export const userDeletedResponseSchema = Type.Object({
+    message: Type.Optional(Type.String()),
+});
+
 export type storeUserInput = Static<typeof storeUserSchema>;
