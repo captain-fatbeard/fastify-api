@@ -37,7 +37,6 @@ export const showUsersHandler = async (
 ) => {
     try {
         const { id }: { id?: number } = request.params;
-
         const user = await showUser(id);
 
         return reply.code(200).send(user);

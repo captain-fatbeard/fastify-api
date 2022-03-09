@@ -1,5 +1,5 @@
 // import { hashPassword } from '../../utils/hash';
-import prisma from '../utils/prisma';
+import prisma from '../../utils/prisma';
 import { storeUserInput } from './user.schema';
 
 export const createUser = async (input: storeUserInput) => {
@@ -17,7 +17,7 @@ export const indexUsers = async () => {
 };
 
 export const showUser = async (id: number) => {
-    const user = await prisma.user.findUnique({ where: { id: id } });
+    const user = await prisma.user.findUnique({ where: { id: Number(id) } });
 
     return user;
 };
