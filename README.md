@@ -17,10 +17,17 @@ API with NodeJS TypeScript using Fastify
 
 Steps to run this project:
 
-1. Run `npm install` command
-2. Run `docker-compose up` command
-3. Run `cp .env.sample .env` command
-4. Run `npm run db:migrate` command
-5. Run `npm run dev` command
+start the containers in docker
 
-The project uses node v16.
+1. Run `docker-compose up` command
+
+migrate database tables
+
+2. Run `docker-compose exec -T app npm run db:migrate` command
+
+app is served at localhost:3000
+adminer on localhost:3005
+
+
+
+The project requires docker and docker-compose.
