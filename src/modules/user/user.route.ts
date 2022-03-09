@@ -7,7 +7,20 @@ import {
 import { storeUserSchema, userResponseSchema } from './user.schema';
 
 const userRoutes = async (fastify: FastifyInstance) => {
-    fastify.get('/', indexUsersHandler);
+    fastify.get(
+        '/',
+        {
+            schema: {
+                response: {
+                    200: {
+                        type: 'array',
+                        items: userResponseSchema,
+                    },
+                },
+            },
+        },
+        indexUsersHandler,
+    );
 
     fastify.get(
         '/:id',
