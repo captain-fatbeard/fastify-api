@@ -1,12 +1,12 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { storeUserInput } from './user.schema';
+import { storeUserInput } from './schema';
 import {
     createUser,
     showUser,
     indexUsers,
     updateUser,
     deleteUser,
-} from './user.service';
+} from './service';
 
 export const createUserHandler = async (
     request: FastifyRequest<{
@@ -59,8 +59,7 @@ export const updateUserHandler = async (
 ) => {
     try {
         const { id }: { id?: number } = request.params;
-        const body = request.body;
-        const user = await updateUser(id, body);
+        const user = await updateUser(id, request.body);
 
         return reply.code(200).send(user);
     } catch (error) {

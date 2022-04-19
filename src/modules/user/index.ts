@@ -5,12 +5,12 @@ import {
     showUsersHandler,
     updateUserHandler,
     deleteUserHandler,
-} from './user.controller';
+} from './controller';
 import {
     storeUserSchema,
     userDeletedResponseSchema,
     userResponseSchema,
-} from './user.schema';
+} from './schema';
 
 const userRoutes = async (fastify: FastifyInstance) => {
     fastify.post(

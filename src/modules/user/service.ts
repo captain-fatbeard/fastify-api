@@ -1,6 +1,6 @@
 import { hashPassword } from '../../utils/hash';
 import prisma from '../../utils/prisma';
-import { storeUserInput } from './user.schema';
+import { storeUserInput } from './schema';
 
 export const createUser = async (input: storeUserInput) => {
     if (input.password) {
