@@ -1,15 +1,13 @@
 import Fastify from 'fastify';
 
-import userRoutes from './modules/user/';
+import userRoutes from './modules/user';
+import healthRoutes from './modules/health';
 
 const fastify = Fastify();
 
-fastify.get('/health', async () => {
-    return { status: 'ok' };
-});
-
 const init = async () => {
     fastify.register(userRoutes, { prefix: 'api/users' });
+    fastify.register(healthRoutes, { prefix: 'api/health' });
 
     try {
         await fastify.listen(3000, '0.0.0.0');
