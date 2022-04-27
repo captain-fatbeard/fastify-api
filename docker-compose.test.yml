@@ -1,0 +1,27 @@
+version: '3.4'
+services:
+  test-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - ./src:/app/src
+    ports:
+      - '3050:3050'
+    depends_on:
+      - db-test
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://test:test@db-test:5432/test?schema=public&connect_timeout=300
+      APP_PORT: 3050
+      LOGGER: 'false'
+  db-test:
+    image: postgres
+    ports:
+      - '5433:5433'
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test

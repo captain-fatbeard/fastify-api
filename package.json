@@ -7,9 +7,10 @@
     "schema": "src/prisma/schema.prisma"
   },
   "scripts": {
-    "test": "jest --coverage",
     "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts",
-    "db:migrate": "npx prisma migrate dev"
+    "db:migrate": "npx prisma migrate dev",
+    "test": "jest -i",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",

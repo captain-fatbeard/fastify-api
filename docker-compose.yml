@@ -14,16 +14,18 @@ services:
     command: npm run dev
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://test:test@db:5432/test?schema=public
+      DATABASE_URL: postgresql://api:api@db:5432/api?schema=public
+      APP_PORT: 3000
+      LOGGER: 'false'
   db:
     image: postgres
     restart: always
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: test
+      POSTGRES_USER: api
+      POSTGRES_PASSWORD: api
+      POSTGRES_DB: api
     volumes:
       - dbdata:/var/lib/postgresql/data
   adminer:

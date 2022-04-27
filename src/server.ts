@@ -4,7 +4,7 @@ import userRoutes from './modules/user';
 import healthRoutes from './modules/health';
 
 const app = fastify({
-    logger: true,
+    logger: process.env.LOGGER === 'true' ? true : false,
 });
 
 export const createServer = async () => {
