@@ -32,6 +32,14 @@ const main = async () => {
             password: hashPassword('password'),
         },
     });
+
+    await prisma.client.upsert({
+        where: { name: 'client_1' },
+        update: {},
+        create: {
+            name: 'client_1',
+        },
+    });
 };
 
 main()
