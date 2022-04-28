@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/captain-fatbeard/fastify-api#readme",
   "dependencies": {
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.13.0",
     "@sinclair/typebox": "^0.23.4",
     "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
