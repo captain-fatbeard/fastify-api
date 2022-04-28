@@ -21,13 +21,13 @@ build_test:
 
 test:
 	make build_test
-	docker-compose -f docker-compose.test.yml exec -T test-app npm run test
+	- docker-compose -f docker-compose.test.yml exec -T test-app npm run test
 	docker-compose -f docker-compose.test.yml down
 
 
 test_cov:
 	make build_test
-	docker-compose -f docker-compose.test.yml exec -T test-app npm run test:coverage
+	- docker-compose -f docker-compose.test.yml exec -T test-app npm run test:coverage
 	docker-compose -f docker-compose.test.yml down
 
 migrate:
