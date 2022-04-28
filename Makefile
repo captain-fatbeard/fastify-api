@@ -14,11 +14,20 @@ stop:
 watch:
 	docker-compose up
 
-test:
+build_test:
 	docker-compose -f docker-compose.test.yml up --build -d
 	docker-compose -f docker-compose.test.yml exec -T test-app npm run db:migrate
 	docker-compose -f docker-compose.test.yml exec -T test-app npm run db:seed:test
+
+test:
+	make build_test
 	docker-compose -f docker-compose.test.yml exec -T test-app npm run test
+	docker-compose -f docker-compose.test.yml down
+
+
+test_cov:
+	make build_test
+	docker-compose -f docker-compose.test.yml exec -T test-app npm run test:coverage
 	docker-compose -f docker-compose.test.yml down
 
 migrate:
