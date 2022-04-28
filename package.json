@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts",
     "db:migrate": "npx prisma migrate dev",
+    "db:seed:test": "ts-node src/prisma/test.seed.ts",
     "test": "jest -i",
     "test:coverage": "jest --coverage"
   },
