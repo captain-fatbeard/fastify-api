@@ -12,14 +12,19 @@ describe('users endpoint', () => {
         await app.close();
     });
 
-    // it('should return a 200 status code', async () => {
-    //     const response = await app.inject({
-    //         method: 'GET',
-    //         url: '/api/users',
-    //     });
-    //     expect(response.statusCode).toBe(200);
-    //     expect(response.json()).toEqual({ status: 'ok' });
-    // });
+    it('can index users', async () => {
+        const response = await app.inject({
+            method: 'GET',
+            url: '/api/users',
+        });
+        expect(response.statusCode).toBe(200);
+        expect(response.json()).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ email: 'user1@test.test' }),
+                expect.objectContaining({ email: 'user2@test.test' }),
+            ]),
+        );
+    });
 
     it('can post new user', async () => {
         const response = await app.inject({
@@ -36,30 +41,38 @@ describe('users endpoint', () => {
         expect(response.json()).toMatchObject({ email: 'new@user.test' });
     });
 
-    // it('should return a 200 status code', async () => {
-    //     const response = await app.inject({
-    //         method: 'GET',
-    //         url: '/api/users/1',
-    //     });
-    //     expect(response.statusCode).toBe(200);
-    //     expect(response.json()).toEqual({ status: 'ok' });
-    // });
+    it('can show a user', async () => {
+        const response = await app.inject({
+            method: 'GET',
+            url: '/api/users/1',
+        });
+        expect(response.statusCode).toBe(200);
+        expect(response.json()).toMatchObject({ email: 'user1@test.test' });
+    });
 
-    // it('should return a 200 status code', async () => {
-    //     const response = await app.inject({
-    //         method: 'PUT',
-    //         url: '/api/users/1',
-    //     });
-    //     expect(response.statusCode).toBe(200);
-    //     expect(response.json()).toEqual({ status: 'ok' });
-    // });
+    it('can update a user', async () => {
+        const response = await app.inject({
+            method: 'PUT',
+            url: '/api/users/1',
+            payload: {
+                password: 'password',
+                firstname: 'firstname',
+                lastname: 'lastname',
+            },
+        });
+        expect(response.statusCode).toBe(200);
+        expect(response.json()).toMatchObject({
+            firstname: 'firstname',
+            lastname: 'lastname',
+        });
+    });
 
-    // it('should return a 200 status code', async () => {
-    //     const response = await app.inject({
-    //         method: 'DELETE',
-    //         url: '/api/users/1',
-    //     });
-    //     expect(response.statusCode).toBe(200);
-    //     expect(response.json()).toEqual({ status: 'ok' });
-    // });
+    it('can delete a user', async () => {
+        const response = await app.inject({
+            method: 'DELETE',
+            url: '/api/users/1',
+        });
+        expect(response.statusCode).toBe(200);
+        expect(response.json()).toEqual({ message: 'user 1 is deleted' });
+    });
 });
