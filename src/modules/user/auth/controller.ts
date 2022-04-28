@@ -17,6 +17,7 @@ export const loginHandler = async (
 
         return reply.code(200).send(user);
     } catch (error) {
+        /* istanbul ignore next */
         return reply.code(500).send(error);
     }
 };

@@ -19,6 +19,7 @@ export const createUserHandler = async (
 
         return reply.code(201).send(user);
     } catch (error) {
+        /* istanbul ignore next */
         return reply.code(500).send(error);
     }
 };
@@ -32,6 +33,7 @@ export const indexUsersHandler = async (
 
         return reply.code(200).send(users);
     } catch (error) {
+        /* istanbul ignore next */
         return reply.code(500).send(error);
     }
 };
@@ -46,6 +48,7 @@ export const showUsersHandler = async (
 
         return reply.code(200).send(user);
     } catch (error) {
+        /* istanbul ignore next */
         return reply.code(500).send(error);
     }
 };
@@ -62,6 +65,7 @@ export const updateUserHandler = async (
 
         return reply.code(200).send(user);
     } catch (error) {
+        /* istanbul ignore next */
         return reply.code(500).send(error);
     }
 };
@@ -76,6 +80,7 @@ export const deleteUserHandler = async (
 
         return reply.code(200).send(deleted);
     } catch (error) {
+        /* istanbul ignore next */
         return reply.code(500).send(error);
     }
 };
