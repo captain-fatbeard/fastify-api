@@ -38,6 +38,18 @@ const main = async () => {
         update: {},
         create: {
             name: 'client_1',
+            users: {
+                create: [
+                    {
+                        user: {
+                            create: {
+                                email: 'client_user_1@user.test',
+                                name: 'client user',
+                            },
+                        },
+                    },
+                ],
+            },
         },
     });
 };

@@ -16,15 +16,34 @@ export const createUser = async (input: storeUserInput) => {
 };
 
 export const indexUsers = async () => {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+        include: { clients: { include: { client: true } } },
+    });
 
-    return users;
+    const result = users.map((user) => {
+        return {
+            ...user,
+            clients: user.clients.map((data) => data.client.id),
+        };
+    });
+
+    return result;
 };
 
 export const showUser = async (id: number) => {
-    const user = await prisma.user.findUnique({ where: { id: Number(id) } });
+    const user = await prisma.user.findUnique({
+        where: { id: Number(id) },
+        include: { clients: { include: { client: true } } },
+    });
 
-    return user;
+    const result = {
+        ...user,
+        clients: user.clients.map((data) => {
+            return data.client.id;
+        }),
+    };
+
+    return result;
 };
 
 export const updateUser = async (id: number, input: storeUserInput) => {
@@ -42,6 +61,8 @@ export const updateUser = async (id: number, input: storeUserInput) => {
 };
 
 export const deleteUser = async (id: number) => {
+    // disconnect all clients from user before deleting
+    await prisma.clientUser.deleteMany({ where: { userId: Number(id) } });
     await prisma.user.delete({ where: { id: Number(id) } });
 
     return { message: `user ${id} is deleted` };
