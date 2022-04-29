@@ -22,6 +22,9 @@ model User {
   role Int @default(1)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  clients ClientUser[]
+
+  @@map("user")
 }
 
 model Client {
@@ -29,4 +32,17 @@ model Client {
   name String @unique
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  users ClientUser[]
+
+  @@map("client")
+}
+
+model ClientUser {
+  userId Int @map("user_id")
+  clientId Int @map("client_id")
+  user User @relation(fields: [userId], references: [id])
+  client Client @relation(fields: [clientId], references: [id])
+
+  @@id([userId, clientId])
+  @@map("client_user")
 }

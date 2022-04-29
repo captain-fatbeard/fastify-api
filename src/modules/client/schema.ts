@@ -2,11 +2,13 @@ import { Static, Type } from '@sinclair/typebox';
 
 export const storeClientSchema = Type.Object({
     name: Type.String(),
+    users: Type.Optional(Type.Array(Type.Number())),
 });
 
 export const clientResponseSchema = Type.Object({
     id: Type.Integer(),
     name: Type.String(),
+    users: Type.Optional(Type.Array(Type.Number())),
 });
 
 export const clientDeletedResponseSchema = Type.Object({

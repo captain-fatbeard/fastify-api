@@ -13,11 +13,13 @@ const userDefaults = {
 export const storeUserSchema = Type.Object({
     ...userDefaults,
     password: Type.Optional(Type.String()),
+    clients: Type.Optional(Type.Array(Type.Number())),
 });
 
 export const userResponseSchema = Type.Object({
     id: Type.Integer(),
     ...userDefaults,
+    clients: Type.Optional(Type.Array(Type.Number())),
 });
 
 export const userDeletedResponseSchema = Type.Object({
