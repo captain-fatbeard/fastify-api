@@ -14,20 +14,23 @@ API with NodeJS TypeScript using Fastify
 
 ## This repository
 
+#### Run with make
 
 Steps to run this project:
 
-start the containers in docker
+build the containers in docker and migrate database tables
 
-1. Run `docker-compose up` command
+1. run `make build` command
 
-migrate database tables
+run containers in detached mode
 
-2. Run `docker-compose exec -T app npm run db:migrate` command
+a. run `make dev` command
+
+run containers in watch mode
+
+b. run `make watch` command
 
 app is served at localhost:3000
 adminer on localhost:3005
-
-
 
 The project requires docker and docker-compose.
