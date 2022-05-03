@@ -41,12 +41,8 @@ const main = async () => {
             users: {
                 create: [
                     {
-                        user: {
-                            create: {
-                                email: 'client_user_1@user.test',
-                                name: 'client user',
-                            },
-                        },
+                        email: 'client_user_1@user.test',
+                        name: 'client user',
                     },
                 ],
             },

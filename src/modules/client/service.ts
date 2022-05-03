@@ -11,33 +11,32 @@ export const createClient = async (input: storeClientInput) => {
 
 export const indexClients = async () => {
     const clients = await prisma.client.findMany({
-        include: { users: { include: { user: true } } },
+        select: {
+            id: true,
+            name: true,
+            users: true,
+        },
     });
 
-    const result = clients.map((client) => {
-        return {
-            ...client,
-            users: client.users.map((data) => data.user.id),
-        };
-    });
-
-    return result;
+    return clients;
 };
 
 export const showClient = async (id: number) => {
     const client = await prisma.client.findUnique({
         where: { id: Number(id) },
-        include: { users: { include: { user: true } } },
+        select: {
+            id: true,
+            name: true,
+            users: {
+                select: {
+                    id: true,
+                    email: true,
+                },
+            },
+        },
     });
 
-    const result = {
-        ...client,
-        users: client.users.map((data) => {
-            return data.user.id;
-        }),
-    };
-
-    return result;
+    return client;
 };
 
 export const updateClient = async (id: number, input: storeClientInput) => {
@@ -51,7 +50,7 @@ export const updateClient = async (id: number, input: storeClientInput) => {
 
 export const deleteClient = async (id: number) => {
     // disconnect all users from client before deleting
-    await prisma.clientUser.deleteMany({ where: { clientId: Number(id) } });
+    // await prisma.clientUser.deleteMany({ where: { clientId: Number(id) } });
     await prisma.client.delete({ where: { id: Number(id) } });
 
     return { message: `client ${id} is deleted` };

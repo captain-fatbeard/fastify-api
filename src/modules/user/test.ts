@@ -56,14 +56,12 @@ describe('users endpoint', () => {
             url: '/api/users/1',
             payload: {
                 password: 'password',
-                firstname: 'firstname',
-                lastname: 'lastname',
+                name: 'udpated name',
             },
         });
         expect(response.statusCode).toBe(200);
         expect(response.json()).toMatchObject({
-            firstname: 'firstname',
-            lastname: 'lastname',
+            name: 'udpated name',
         });
     });
 
