@@ -3,7 +3,6 @@ import prisma from '../../utils/prisma';
 import { storeUserInput } from './schema';
 
 export async function createUser(input: storeUserInput) {
-    // console.log(input);
     if (input.password) {
         const hashedPassword = await hashPassword(input.password);
         input = { ...input, password: hashedPassword };

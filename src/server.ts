@@ -16,7 +16,9 @@ export const createServer = async () => {
     await app.register(authRoutes, { prefix: '/api/users/auth' });
 
     app.setErrorHandler((error, req, res) => {
+        /* istanbul ignore next */
         req.log.error(error.toString());
+        /* istanbul ignore next */
         res.send({ error });
     });
 

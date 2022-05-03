@@ -41,6 +41,47 @@ describe('users endpoint', () => {
         expect(response.json()).toMatchObject({ email: 'new@user.test' });
     });
 
+    it('can post new user with password', async () => {
+        const response = await app.inject({
+            method: 'POST',
+            url: '/api/users',
+            payload: {
+                email: 'password@user.test',
+                name: 'name',
+                phone: '12345678',
+                role: 1,
+                password: 'password',
+            },
+        });
+        expect(response.statusCode).toBe(201);
+        expect(response.json()).toMatchObject({
+            email: 'password@user.test',
+        });
+    });
+
+    it('can post new user with clients', async () => {
+        const response = await app.inject({
+            method: 'POST',
+            url: '/api/users',
+            payload: {
+                email: 'clients@user.test',
+                name: 'name',
+                phone: '12345678',
+                role: 1,
+                clients: [1],
+            },
+        });
+        expect(response.statusCode).toBe(201);
+        expect(response.json()).toMatchObject({
+            email: 'clients@user.test',
+        });
+        expect(response.json()).toMatchObject({
+            clients: expect.arrayContaining([
+                expect.objectContaining({ id: 1 }),
+            ]),
+        });
+    });
+
     it('can show a user', async () => {
         const response = await app.inject({
             method: 'GET',
@@ -62,6 +103,27 @@ describe('users endpoint', () => {
         expect(response.statusCode).toBe(200);
         expect(response.json()).toMatchObject({
             name: 'udpated name',
+        });
+    });
+
+    it('can update a user with clients', async () => {
+        const response = await app.inject({
+            method: 'PUT',
+            url: '/api/users/1',
+            payload: {
+                password: 'password',
+                name: 'with clients',
+                clients: [1],
+            },
+        });
+        expect(response.statusCode).toBe(200);
+        expect(response.json()).toMatchObject({
+            name: 'with clients',
+        });
+        expect(response.json()).toMatchObject({
+            clients: expect.arrayContaining([
+                expect.objectContaining({ id: 1 }),
+            ]),
         });
     });
 
