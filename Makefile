@@ -15,7 +15,7 @@ watch:
 	docker-compose up
 
 build_test:
-	docker-compose -f docker-compose.test.yml up --build -d
+	docker-compose -f docker-compose.test.yml up --build -d --force-recreate
 	docker-compose -f docker-compose.test.yml exec -T test-app npm run db:migrate
 	docker-compose -f docker-compose.test.yml exec -T test-app npm run db:seed:test
 
@@ -32,3 +32,6 @@ test_cov:
 
 migrate:
 	docker-compose exec -T app npm run db:migrate
+
+seed:
+	docker-compose exec -T app npm run db:seed:test
