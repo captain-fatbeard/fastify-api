@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { storeClientInput } from './schema';
+import { StoreClientInput } from './schema';
 import {
     createClient,
     showClient,
@@ -10,7 +10,7 @@ import {
 
 export const createClientHandler = async (
     request: FastifyRequest<{
-        Body: storeClientInput;
+        Body: StoreClientInput;
     }>,
     reply: FastifyReply,
 ) => {
@@ -55,7 +55,7 @@ export const showClientsHandler = async (
 
 export const updateClientHandler = async (
     request: FastifyRequest<{
-        Body: storeClientInput;
+        Body: StoreClientInput;
     }>,
     reply: FastifyReply,
 ) => {

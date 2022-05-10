@@ -1,7 +1,7 @@
 import prisma from '../../utils/prisma';
-import { storeClientInput } from './schema';
+import { StoreClientInput } from './schema';
 
-export const createClient = async (input: storeClientInput) => {
+export const createClient = async (input: StoreClientInput) => {
     const client = await prisma.client.create({
         data: input,
     });
@@ -39,7 +39,7 @@ export const showClient = async (id: number) => {
     return client;
 };
 
-export const updateClient = async (id: number, input: storeClientInput) => {
+export const updateClient = async (id: number, input: StoreClientInput) => {
     const client = await prisma.client.update({
         where: { id: Number(id) },
         data: input,

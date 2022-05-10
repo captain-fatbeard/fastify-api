@@ -7,9 +7,9 @@ import {
     deleteClientHandler,
 } from './controller';
 import {
-    storeClientSchema,
-    clientDeletedResponseSchema,
-    clientResponseSchema,
+    StoreClientSchema,
+    ClientDeletedResponseSchema,
+    ClientResponseSchema,
 } from './schema';
 
 const clientRoutes = async (fastify: FastifyInstance) => {
@@ -17,9 +17,9 @@ const clientRoutes = async (fastify: FastifyInstance) => {
         '/',
         {
             schema: {
-                body: { storeClientSchema },
+                body: { StoreClientSchema },
                 response: {
-                    201: clientResponseSchema,
+                    201: ClientResponseSchema,
                 },
             },
         },
@@ -33,7 +33,7 @@ const clientRoutes = async (fastify: FastifyInstance) => {
                 response: {
                     200: {
                         type: 'array',
-                        items: clientResponseSchema,
+                        items: ClientResponseSchema,
                     },
                 },
             },
@@ -46,7 +46,7 @@ const clientRoutes = async (fastify: FastifyInstance) => {
         {
             schema: {
                 response: {
-                    200: clientResponseSchema,
+                    200: ClientResponseSchema,
                 },
             },
         },
@@ -57,9 +57,9 @@ const clientRoutes = async (fastify: FastifyInstance) => {
         '/:id',
         {
             schema: {
-                body: { storeClientSchema },
+                body: { StoreClientSchema },
                 response: {
-                    200: clientResponseSchema,
+                    200: ClientResponseSchema,
                 },
             },
         },
@@ -71,7 +71,7 @@ const clientRoutes = async (fastify: FastifyInstance) => {
         {
             schema: {
                 response: {
-                    200: clientDeletedResponseSchema,
+                    200: ClientDeletedResponseSchema,
                 },
             },
         },

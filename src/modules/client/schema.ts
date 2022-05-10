@@ -1,11 +1,11 @@
 import { Static, Type } from '@sinclair/typebox';
 
-export const storeClientSchema = Type.Object({
+export const StoreClientSchema = Type.Object({
     name: Type.String(),
     users: Type.Optional(Type.Array(Type.Number())),
 });
 
-export const clientResponseSchema = Type.Object({
+export const ClientResponseSchema = Type.Object({
     id: Type.Integer(),
     name: Type.String(),
     users: Type.Optional(
@@ -18,8 +18,8 @@ export const clientResponseSchema = Type.Object({
     ),
 });
 
-export const clientDeletedResponseSchema = Type.Object({
+export const ClientDeletedResponseSchema = Type.Object({
     message: Type.Optional(Type.String()),
 });
 
-export type storeClientInput = Static<typeof storeClientSchema>;
+export type StoreClientInput = Static<typeof StoreClientSchema>;
