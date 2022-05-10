@@ -1,17 +1,17 @@
 import { FastifyInstance } from 'fastify';
 import { loginHandler } from './controller';
-import { userResponseSchema } from '../schema';
-import { loginUserSchema, unauthorizedResponseSchema } from './schema';
+import { UserResponseSchema } from '../schema';
+import { LoginUserSchema, UnauthorizedResponseSchema } from './schema';
 
 const authRoutes = async (fastify: FastifyInstance) => {
     fastify.post(
         '/login',
         {
             schema: {
-                body: { loginUserSchema },
+                body: { LoginUserSchema },
                 response: {
-                    200: userResponseSchema,
-                    401: unauthorizedResponseSchema,
+                    200: UserResponseSchema,
+                    401: UnauthorizedResponseSchema,
                 },
             },
         },

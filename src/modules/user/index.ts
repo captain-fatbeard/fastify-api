@@ -7,9 +7,9 @@ import {
     deleteUserHandler,
 } from './controller';
 import {
-    storeUserSchema,
-    userDeletedResponseSchema,
-    userResponseSchema,
+    StoreUserSchema,
+    UserDeletedResponseSchema,
+    UserResponseSchema,
 } from './schema';
 
 const userRoutes = async (fastify: FastifyInstance) => {
@@ -17,9 +17,9 @@ const userRoutes = async (fastify: FastifyInstance) => {
         '/',
         {
             schema: {
-                body: { storeUserSchema },
+                body: { StoreUserSchema },
                 response: {
-                    201: userResponseSchema,
+                    201: UserResponseSchema,
                 },
             },
         },
@@ -33,7 +33,7 @@ const userRoutes = async (fastify: FastifyInstance) => {
                 response: {
                     200: {
                         type: 'array',
-                        items: userResponseSchema,
+                        items: UserResponseSchema,
                     },
                 },
             },
@@ -46,7 +46,7 @@ const userRoutes = async (fastify: FastifyInstance) => {
         {
             schema: {
                 response: {
-                    200: userResponseSchema,
+                    200: UserResponseSchema,
                 },
             },
         },
@@ -57,9 +57,9 @@ const userRoutes = async (fastify: FastifyInstance) => {
         '/:id',
         {
             schema: {
-                body: { storeUserSchema },
+                body: { StoreUserSchema },
                 response: {
-                    200: userResponseSchema,
+                    200: UserResponseSchema,
                 },
             },
         },
@@ -71,7 +71,7 @@ const userRoutes = async (fastify: FastifyInstance) => {
         {
             schema: {
                 response: {
-                    200: userDeletedResponseSchema,
+                    200: UserDeletedResponseSchema,
                 },
             },
         },

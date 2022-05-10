@@ -1,8 +1,8 @@
 import { hashPassword } from '../../utils/hash';
 import prisma from '../../utils/prisma';
-import { storeUserInput } from './schema';
+import { StoreUserInput } from './schema';
 
-export async function createUser(input: storeUserInput) {
+export async function createUser(input: StoreUserInput) {
     if (input.password) {
         const hashedPassword = await hashPassword(input.password);
         input = { ...input, password: hashedPassword };
@@ -76,7 +76,7 @@ export const showUser = async (id: number) => {
     return user;
 };
 
-export const updateUser = async (id: number, input: storeUserInput) => {
+export const updateUser = async (id: number, input: StoreUserInput) => {
     if (input.password) {
         const hashedPassword = await hashPassword(input.password);
         input = { ...input, password: hashedPassword };

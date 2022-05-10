@@ -1,12 +1,12 @@
 import { Static, Type } from '@sinclair/typebox';
 
-export const loginUserSchema = Type.Object({
+export const LoginUserSchema = Type.Object({
     email: Type.String({ format: 'email' }),
     password: Type.Optional(Type.String()),
 });
 
-export type loginUserRequest = Static<typeof loginUserSchema>;
+export type LoginUserRequest = Static<typeof LoginUserSchema>;
 
-export const unauthorizedResponseSchema = Type.Object({
+export const UnauthorizedResponseSchema = Type.Object({
     message: Type.String(),
 });

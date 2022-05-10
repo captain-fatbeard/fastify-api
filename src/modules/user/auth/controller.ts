@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { loginUserRequest } from './schema';
+import { LoginUserRequest } from './schema';
 import { loginUser } from './service';
 
 export const loginHandler = async (
     request: FastifyRequest<{
-        Body: loginUserRequest;
+        Body: LoginUserRequest;
     }>,
     reply: FastifyReply,
 ) => {

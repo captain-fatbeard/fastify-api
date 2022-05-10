@@ -1,8 +1,8 @@
 import { verifyPassword } from '../../../utils/hash';
 import prisma from '../../../utils/prisma';
-import { loginUserRequest } from './schema';
+import { LoginUserRequest } from './schema';
 
-export const loginUser = async (input: loginUserRequest) => {
+export const loginUser = async (input: LoginUserRequest) => {
     let user = await prisma.user.findUnique({
         where: { email: String(input.email) },
     });

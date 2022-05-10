@@ -8,13 +8,13 @@ const userDefaults = {
     role: Type.Optional(Type.Integer()),
 };
 
-export const storeUserSchema = Type.Object({
+export const StoreUserSchema = Type.Object({
     ...userDefaults,
     password: Type.Optional(Type.String()),
     clients: Type.Optional(Type.Array(Type.Number())),
 });
 
-export const userResponseSchema = Type.Object({
+export const UserResponseSchema = Type.Object({
     id: Type.Integer(),
     ...userDefaults,
     clients: Type.Optional(
@@ -27,8 +27,8 @@ export const userResponseSchema = Type.Object({
     ),
 });
 
-export const userDeletedResponseSchema = Type.Object({
+export const UserDeletedResponseSchema = Type.Object({
     message: Type.Optional(Type.String()),
 });
 
-export type storeUserInput = Static<typeof storeUserSchema>;
+export type StoreUserInput = Static<typeof StoreUserSchema>;
