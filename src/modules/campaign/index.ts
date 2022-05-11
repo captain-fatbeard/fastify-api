@@ -7,6 +7,7 @@ import {
     deleteCampaignHandler,
 } from './controller';
 import {
+    UdpateCampaignSchema,
     StoreCampaignSchema,
     CampaignDeletedResponseSchema,
     CampaignResponseSchema,
@@ -57,7 +58,7 @@ const campaignRoutes = async (fastify: FastifyInstance) => {
         '/:id',
         {
             schema: {
-                body: { StoreCampaignSchema },
+                body: { UdpateCampaignSchema },
                 response: {
                     200: CampaignResponseSchema,
                 },
