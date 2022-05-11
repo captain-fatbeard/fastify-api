@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { StoreUserInput } from './schema';
+import { StoreUserInput, UpdateUserInput } from './schema';
 import {
     createUser,
     showUser,
@@ -55,7 +55,7 @@ export const showUsersHandler = async (
 
 export const updateUserHandler = async (
     request: FastifyRequest<{
-        Body: StoreUserInput;
+        Body: UpdateUserInput;
     }>,
     reply: FastifyReply,
 ) => {

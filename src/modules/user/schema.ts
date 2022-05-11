@@ -1,7 +1,6 @@
 import { Static, Type } from '@sinclair/typebox';
 
-const userDefaults = {
-    email: Type.String({ format: 'email' }),
+const userSchemaPart = {
     name: Type.Optional(Type.String()),
     phone: Type.Optional(Type.String()),
     validated: Type.Optional(Type.String()),
@@ -9,22 +8,24 @@ const userDefaults = {
 };
 
 export const StoreUserSchema = Type.Object({
-    ...userDefaults,
+    email: Type.String({ format: 'email' }),
+    ...userSchemaPart,
+    password: Type.Optional(Type.String()),
+    clients: Type.Optional(Type.Array(Type.Number())),
+});
+
+export const UpdateUserSchema = Type.Object({
+    email: Type.Optional(Type.String({ format: 'email' })),
+    ...userSchemaPart,
     password: Type.Optional(Type.String()),
     clients: Type.Optional(Type.Array(Type.Number())),
 });
 
 export const UserResponseSchema = Type.Object({
     id: Type.Integer(),
-    ...userDefaults,
-    clients: Type.Optional(
-        Type.Array(
-            Type.Object({
-                id: Type.Integer(),
-                name: Type.String(),
-            }),
-        ),
-    ),
+    email: Type.String({ format: 'email' }),
+    ...userSchemaPart,
+    clients: Type.Array(Type.Any()),
 });
 
 export const UserDeletedResponseSchema = Type.Object({
@@ -32,3 +33,4 @@ export const UserDeletedResponseSchema = Type.Object({
 });
 
 export type StoreUserInput = Static<typeof StoreUserSchema>;
+export type UpdateUserInput = Static<typeof UpdateUserSchema>;

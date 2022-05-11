@@ -1,8 +1,8 @@
 import { hashPassword } from '../../utils/hash';
 import prisma from '../../utils/prisma';
-import { StoreUserInput } from './schema';
+import { StoreUserInput, UpdateUserInput } from './schema';
 
-const selectUserQuery = {
+export const selectUserQuery = {
     id: true,
     email: true,
     name: true,
@@ -13,6 +13,7 @@ const selectUserQuery = {
         select: {
             id: true,
             name: true,
+            campaigns: false,
         },
     },
 };
@@ -34,15 +35,7 @@ export async function createUser(input: StoreUserInput) {
                     : [],
             },
         },
-        select: {
-            id: true,
-            email: true,
-            name: true,
-            phone: true,
-            validated: true,
-            role: true,
-            clients: true,
-        },
+        select: selectUserQuery,
     });
 
     return user;
@@ -65,7 +58,7 @@ export const showUser = async (id: number) => {
     return user;
 };
 
-export const updateUser = async (id: number, input: StoreUserInput) => {
+export const updateUser = async (id: number, input: UpdateUserInput) => {
     if (input.password) {
         const hashedPassword = await hashPassword(input.password);
         input = { ...input, password: hashedPassword };
@@ -83,27 +76,30 @@ export const updateUser = async (id: number, input: StoreUserInput) => {
         });
     }
 
+    const inputData = input.clients
+        ? {
+              ...input,
+              clients: {
+                  connect: input.clients.map((clientId) => {
+                      return { id: clientId };
+                  }),
+              },
+          }
+        : input;
+
     const user = await prisma.user.update({
         where: { id: Number(id) },
         data: {
-            ...input,
-            clients: {
-                connect: input.clients
-                    ? input.clients.map((clientId) => {
-                          return { id: clientId };
-                      })
-                    : [],
-            },
+            ...inputData,
+            // clients: {
+            //     connect: input.clients
+            //         ? input.clients.map((clientId) => {
+            //               return { id: clientId };
+            //           })
+            //         : [],
+            // },
         },
-        select: {
-            id: true,
-            email: true,
-            name: true,
-            phone: true,
-            validated: true,
-            role: true,
-            clients: true,
-        },
+        select: selectUserQuery,
     });
 
     return user;

@@ -8,6 +8,7 @@ import {
 } from './controller';
 import {
     StoreUserSchema,
+    UpdateUserSchema,
     UserDeletedResponseSchema,
     UserResponseSchema,
 } from './schema';
@@ -57,7 +58,7 @@ const userRoutes = async (fastify: FastifyInstance) => {
         '/:id',
         {
             schema: {
-                body: { StoreUserSchema },
+                body: { UpdateUserSchema },
                 response: {
                     200: UserResponseSchema,
                 },
