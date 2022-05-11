@@ -2,6 +2,21 @@ import { hashPassword } from '../../utils/hash';
 import prisma from '../../utils/prisma';
 import { StoreUserInput } from './schema';
 
+const selectUserQuery = {
+    id: true,
+    email: true,
+    name: true,
+    phone: true,
+    validated: true,
+    role: true,
+    clients: {
+        select: {
+            id: true,
+            name: true,
+        },
+    },
+};
+
 export async function createUser(input: StoreUserInput) {
     if (input.password) {
         const hashedPassword = await hashPassword(input.password);
@@ -35,20 +50,7 @@ export async function createUser(input: StoreUserInput) {
 
 export const indexUsers = async () => {
     const users = await prisma.user.findMany({
-        select: {
-            id: true,
-            email: true,
-            name: true,
-            phone: true,
-            validated: true,
-            role: true,
-            clients: {
-                select: {
-                    id: true,
-                    name: true,
-                },
-            },
-        },
+        select: selectUserQuery,
     });
 
     return users;
@@ -57,20 +59,7 @@ export const indexUsers = async () => {
 export const showUser = async (id: number) => {
     const user = await prisma.user.findUnique({
         where: { id: Number(id) },
-        select: {
-            id: true,
-            email: true,
-            name: true,
-            phone: true,
-            validated: true,
-            role: true,
-            clients: {
-                select: {
-                    id: true,
-                    name: true,
-                },
-            },
-        },
+        select: selectUserQuery,
     });
 
     return user;
