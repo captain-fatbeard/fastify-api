@@ -21,8 +21,6 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   clients Client[]
-
-  // @@map("user")
 }
 
 model Client {
@@ -30,18 +28,23 @@ model Client {
   name String @unique
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  // users ClientUser[]
   users User[]
-
-  // @@map("client")
+  campaigns Campaign[]
 }
 
-// model ClientUser {
-//   userId Int @map("user_id")
-//   clientId Int @map("client_id")
-//   user User @relation(fields: [userId], references: [id])
-//   client Client @relation(fields: [clientId], references: [id])
-
-//   @@id([userId, clientId])
-//   @@map("client_user")
-// }
+model Campaign {
+  id Int @id @default(autoincrement())
+  name String
+  slug String
+  template_name String?
+  theme String?
+  is_published Boolean? @default(false)
+  is_template Boolean? @default(false)
+  from DateTime?
+  to DateTime?
+  created_by String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  client Client @relation(fields: [clientId], references: [id])
+  clientId Int
+}

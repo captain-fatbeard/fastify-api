@@ -46,6 +46,18 @@ const main = async () => {
                     },
                 ],
             },
+            campaigns: {
+                create: [
+                    {
+                        name: 'campaign_1',
+                        slug: 'campaign_1_slug',
+                    },
+                    {
+                        name: 'campaign_2',
+                        slug: 'campaign_2_slug',
+                    },
+                ],
+            },
         },
     });
 };

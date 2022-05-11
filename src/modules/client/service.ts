@@ -49,8 +49,8 @@ export const updateClient = async (id: number, input: StoreClientInput) => {
 };
 
 export const deleteClient = async (id: number) => {
-    // disconnect all users from client before deleting
-    // await prisma.clientUser.deleteMany({ where: { clientId: Number(id) } });
+    // delete all campaigns from client before deleting
+    await prisma.campaign.deleteMany({ where: { clientId: Number(id) } });
     await prisma.client.delete({ where: { id: Number(id) } });
 
     return { message: `client ${id} is deleted` };
